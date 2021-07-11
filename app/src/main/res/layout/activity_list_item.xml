@@ -1,0 +1,50 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="16dp"
+    android:layout_alignParentTop="true"
+    >
+
+    <TextView
+        android:id="@+id/earthquake_mag"
+        android:layout_width="44dp"
+        android:layout_height="match_parent"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:text="6.1" />
+
+    <TextView
+        android:id="@+id/earthquake_location"
+        android:layout_width="110dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/earthquake_mag"
+        android:gravity="center"
+        android:text="San Fransisco"
+        android:textAlignment="gravity" />
+    <TextView
+        android:id="@+id/earthquake_location_main"
+        android:layout_width="115dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/earthquake_location"
+        android:gravity="center"
+        android:text="San Fransisco"
+        android:textAlignment="gravity" />
+
+    <TextView
+        android:id="@+id/earthquake_date"
+        android:layout_width="69dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/earthquake_location_main"
+        android:textAlignment="gravity"
+        android:gravity="center"
+
+
+        android:text="Feb 20, 2014" />
+
+</RelativeLayout>
