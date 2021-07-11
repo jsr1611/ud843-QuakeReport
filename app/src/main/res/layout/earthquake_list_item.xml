@@ -9,10 +9,16 @@
 
     <TextView
         android:id="@+id/earthquake_mag"
-        android:layout_width="44dp"
-        android:layout_height="match_parent"
-        android:textAlignment="gravity"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/magnitude_circle"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         android:text="6.1" />
 
     <TextView
@@ -39,7 +45,8 @@
         android:layout_width="69dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_toRightOf="@id/earthquake_location_main"
         android:textAlignment="gravity"
         android:gravity="center"
