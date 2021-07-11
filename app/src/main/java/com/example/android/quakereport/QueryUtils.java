@@ -63,7 +63,7 @@ public final class QueryUtils {
                 double mag = propertiesJSON.getDouble("mag");
                 String location = propertiesJSON.getString("place");
                 Date datetime = new Date(Long.parseLong(propertiesJSON.getString("time")));
-                SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy");
+                SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
                 String date = formatter.format(datetime);
 
                 earthquakes.add(new Earthquake(mag, location, date));
