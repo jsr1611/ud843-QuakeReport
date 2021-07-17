@@ -4,6 +4,7 @@ public class Earthquake {
     private String date;
     private String location;
     private double magnitude;
+    private String url;
 
     public String getDate() {
         return date;
@@ -16,6 +17,7 @@ public class Earthquake {
     public double getMagnitude() {
         return magnitude;
     }
+    public String getUrl(){return url;}
 
     /**
      * Constructor for the Earthquake class
@@ -23,10 +25,11 @@ public class Earthquake {
      * @param date is the time when it occurred
      * @param magnitude is the magnitude
      */
-    public Earthquake(double magnitude, String location, String date) {
+    public Earthquake(double magnitude, String location, String date, String url) {
         this.date = date;
         this.location = location;
         this.magnitude = magnitude;
+        this.url = url;
     }
 
     public Earthquake() {

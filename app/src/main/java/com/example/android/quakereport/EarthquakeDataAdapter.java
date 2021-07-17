@@ -1,6 +1,8 @@
 package com.example.android.quakereport;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -34,7 +36,7 @@ public class EarthquakeDataAdapter extends ArrayAdapter<Earthquake>{
 
 
 
-        Earthquake currentEarthquake = getItem(position);
+        final Earthquake currentEarthquake = getItem(position);
 
 
 
@@ -73,6 +75,20 @@ public class EarthquakeDataAdapter extends ArrayAdapter<Earthquake>{
 
         TextView eq_date = (TextView)listItemView.findViewById(R.id.earthquake_date);
         eq_date.setText(currentEarthquake.getDate());
+
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = currentEarthquake.getUrl();
+                System.out.println("URL: " + url);
+                Intent oepnUrlIntent = new Intent(Intent.ACTION_VIEW);
+                oepnUrlIntent.setData(Uri.parse(url));
+                getContext().startActivity(oepnUrlIntent);
+
+
+            }
+        });
+
         return listItemView;
     }
 

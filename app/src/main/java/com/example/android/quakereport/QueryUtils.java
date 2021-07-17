@@ -79,8 +79,9 @@ public final class QueryUtils {
                 Date datetime = new Date(Long.parseLong(propertiesJSON.getString("time")));
                 SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
                 String date = formatter.format(datetime);
-
-                earthquakes.add(new Earthquake(mag, location, date));
+                String url = propertiesJSON.getString("url");
+                System.out.println("url: " + url);
+                earthquakes.add(new Earthquake(mag, location, date, url));
             }
 
         } catch (JSONException e) {

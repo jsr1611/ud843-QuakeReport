@@ -21,9 +21,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class EarthquakeActivity extends AppCompatActivity {
 
-    public static final String LOG_TAG = MainActivity.class.getName();
+    public static final String LOG_TAG = EarthquakeActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
         EarthquakeDataAdapter eq_dataAdapter = new EarthquakeDataAdapter(
-                MainActivity.this, earthquakes);
+                EarthquakeActivity.this, earthquakes);
 
         earthquakeListView.setAdapter(eq_dataAdapter);
 
