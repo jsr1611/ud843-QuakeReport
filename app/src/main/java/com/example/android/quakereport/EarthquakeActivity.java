@@ -32,20 +32,29 @@ import java.util.List;
 public class EarthquakeActivity extends AppCompatActivity {
 
     private static final String urlStr = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
-
+    private EarthquakeDataAdapter mAdapter;
 
     private class EarthquakeAsyncTask extends AsyncTask<String, Void, List<Earthquake>> {
         private ArrayList<Earthquake> earthquakeList;
 
         @Override
         protected ArrayList<Earthquake> doInBackground(String... urls) {
+            if (urls.length < 1 || urls[0] == null) {
+                return null;
+            }
             earthquakeList = (ArrayList<Earthquake>) QueryUtils.fetchEarthquakeData(urlStr);
             return earthquakeList;
         }
 
         @Override
         protected void onPostExecute(List<Earthquake> earthquakeList) {
-            UpdateUi(earthquakeList);
+            // Clear the adapter of previous earthquake data
+            mAdapter.clear();
+
+            // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+            // data set. This will trigger the ListView to update.
+            if(earthquakeList != null && !earthquakeList.isEmpty())
+                UpdateUi(earthquakeList);
         }
     }
 
@@ -64,30 +73,18 @@ public class EarthquakeActivity extends AppCompatActivity {
 
     }
     private void UpdateUi(List<Earthquake> earthquakes){
-
-        // Create a fake list of earthquake locations.
-        //ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
-//        ArrayList<Earthquake> earthquakes = new ArrayList<>();
-//        earthquakes.add(new Earthquake(7.2, "San Francisco", "Feb 2, 2016") );
-//        earthquakes.add(new Earthquake(6.1, "London", "July 20, 2015"));
-//        earthquakes.add(new Earthquake(3.1, "Tokyo", "Nov 10, 2014"));
-//        earthquakes.add(new Earthquake(5.4, "Mexico City", "May 3, 2014"));
-//        earthquakes.add(new Earthquake(2.8, "Moscow", "Jan 31, 2013"));
-//        earthquakes.add(new Earthquake(4.9, "Rio de Janeiro", "Aug 19, 2012" ));
-//        earthquakes.add(new Earthquake(1.6, "Paris", "Oct 30, 2011"));
-
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
-        final EarthquakeDataAdapter eq_dataAdapter = new EarthquakeDataAdapter(
+        mAdapter = new EarthquakeDataAdapter(
                 EarthquakeActivity.this, (ArrayList<Earthquake>) earthquakes);
 
-        earthquakeListView.setAdapter(eq_dataAdapter);
+        earthquakeListView.setAdapter(mAdapter);
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String url = eq_dataAdapter.getItem(position).getUrl();
+                String url = mAdapter.getItem(position).getUrl();
                 System.out.println("URL: " + url);
                 Intent oepnUrlIntent = new Intent(Intent.ACTION_VIEW);
                 oepnUrlIntent.setData(Uri.parse(url));
