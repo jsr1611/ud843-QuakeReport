@@ -31,27 +31,15 @@ import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity {
 
-    public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private static final String urlStr = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
 
     private class EarthquakeAsyncTask extends AsyncTask<String, Void, List<Earthquake>> {
         private ArrayList<Earthquake> earthquakeList;
-        private String sampleJsonResp = "";
 
         @Override
         protected ArrayList<Earthquake> doInBackground(String... urls) {
-            if (urls.length < 1 || urls[0] == null)
-                return null;
-            URL url = QueryUtils.createUrl(urls[0]);
-
-            try {
-                QueryUtils.SAMPLE_JSON_RESPONSE = QueryUtils.makeHttpRequest(url);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            earthquakeList = QueryUtils.extractEarthquakes();
-
+            earthquakeList = (ArrayList<Earthquake>) QueryUtils.fetchEarthquakeData(urlStr);
             return earthquakeList;
         }
 
