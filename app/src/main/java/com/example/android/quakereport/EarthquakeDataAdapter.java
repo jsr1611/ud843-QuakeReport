@@ -76,18 +76,7 @@ public class EarthquakeDataAdapter extends ArrayAdapter<Earthquake>{
         TextView eq_date = (TextView)listItemView.findViewById(R.id.earthquake_date);
         eq_date.setText(currentEarthquake.getDate());
 
-        listItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = currentEarthquake.getUrl();
-                System.out.println("URL: " + url);
-                Intent oepnUrlIntent = new Intent(Intent.ACTION_VIEW);
-                oepnUrlIntent.setData(Uri.parse(url));
-                getContext().startActivity(oepnUrlIntent);
 
-
-            }
-        });
 
         return listItemView;
     }
